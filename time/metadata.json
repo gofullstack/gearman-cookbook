@@ -1,0 +1,42 @@
+{
+    "suggestions": {
+    },
+    "maintainer_email": "sysadmin@cramerdev.com",
+    "description": "Sets up ntp client and time zone",
+    "recipes": {
+      "time": "Sets up ntp client and time zone"
+    },
+    "conflicting": {
+    },
+    "attributes": {
+    },
+    "providing": {
+    },
+    "dependencies": {
+    },
+    "replacing": {
+    },
+    "platforms": {
+      "debian": [
+
+      ],
+      "centos": [
+
+      ],
+      "ubuntu": [
+
+      ],
+      "redhat": [
+
+      ]
+    },
+    "version": "0.0.1",
+    "groupings": {
+    },
+    "license": "Apache 2.0",
+    "long_description": "",
+    "name": "time",
+    "recommendations": {
+    },
+    "maintainer": "Cramer Development, Inc."
+  }
