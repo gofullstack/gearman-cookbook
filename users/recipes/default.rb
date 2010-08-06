@@ -42,7 +42,7 @@ search(:users, 'groups:admin') do |u|
     owner u['id']
     group u['id']
     mode "0600"
-    variables :ssh_keys => u['ssh_keys']
+    variables :ssh_keys => u['ssh_keys'].join("\n")
   end
 end
 
