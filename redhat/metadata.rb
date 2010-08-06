@@ -1,0 +1,8 @@
+maintainer        "Cramer Development, Inc."
+maintainer_email  "sysadmin@cramerdev.com"
+license           "Apache 2.0"
+description       "Sets up sources for redhat"
+version           "0.0.1"
+supports          "centos"
+supports          "redhat"
+recipe            "redhat", "Sets up sources for the node's redhat release"
