@@ -41,8 +41,10 @@ end
 # Set time zone
 file "/etc/localtime" do
   action :delete
+  not_if "test -L /etc/localtime"
 end
 
 link "/etc/localtime" do
   to "/usr/share/zoneinfo/#{node[:time][:zone]}"
+  not_if "test -L /etc/localtime"
 end
