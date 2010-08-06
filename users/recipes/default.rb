@@ -24,9 +24,10 @@ search(:users, 'groups:admin') do |u|
   home_dir = "/home/#{u['id']}"
 
   # Lock the root user
-  user "root" do
-    action :lock
-  end
+  # FIXME: This is disabled. See http://tickets.opscode.com/browse/CHEF-1537
+  #user "root" do
+    #action :lock
+  #end
 
   user u['id'] do
     uid u['uid']
