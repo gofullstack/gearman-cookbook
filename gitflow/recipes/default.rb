@@ -25,6 +25,7 @@ end
 execute "gitflow-install" do
   command "/usr/src/gitflow-install.sh"
   action :run
+  creates "/usr/local/bin/git-flow"
 end
 
-# TODO: completion
+# TODO: completion (#9163)
