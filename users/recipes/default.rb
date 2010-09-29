@@ -54,4 +54,5 @@ end
 
 group "admin" do
   members sysadmin_group
+  append true
 end
