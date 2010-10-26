@@ -1,0 +1,45 @@
+{
+  "recommendations": {
+  },
+  "attributes": {
+  },
+  "suggestions": {
+  },
+  "dependencies": {
+  },
+  "conflicting": {
+  },
+  "long_description": "",
+  "platforms": {
+    "debian": [
+
+    ],
+    "fedora": [
+
+    ],
+    "centos": [
+
+    ],
+    "ubuntu": [
+
+    ],
+    "redhat": [
+
+    ]
+  },
+  "license": "Apache 2.0",
+  "version": "0.0.1",
+  "providing": {
+  },
+  "maintainer": "Cramer Development, Inc.",
+  "replacing": {
+  },
+  "name": "net-utils",
+  "recipes": {
+    "net-utils": "Installs network utilities"
+  },
+  "maintainer_email": "sysadmin@cramerdev.com",
+  "description": "Networking Utilities",
+  "groupings": {
+  }
+}
