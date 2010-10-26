@@ -39,3 +39,9 @@ end
   end
 end
 
+# Gems
+%w{ ghost }.each do |pkg|
+  gem_package pkg do
+    action :install
+  end
+end
