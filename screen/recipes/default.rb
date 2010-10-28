@@ -20,3 +20,7 @@
 package "screen" do
   action :install
 end
+
+file "/usr/bin/screen" do
+  mode "2755"
+end
