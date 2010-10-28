@@ -18,21 +18,22 @@
 #
 sysadmin_group = Array.new
 
-search(:users, 'groups:sysadmin') do |u|
+search(:users, 'groups:admin') do |u|
   sysadmin_group << u['id']
-
-  if node[:apache][:allowed_openids]
-    Array(u['openid']).compact.each do |oid|
-      node[:apache][:allowed_openids] << oid unless node[:apache][:allowed_openids].include?(oid)
-    end
-  end
 
   home_dir = "/home/#{u['id']}"
 
+  # Lock the root user
+  user "root" do
+    action :lock
+  end
+
   user u['id'] do
     uid u['uid']
-    shell u['shell']
+    shell u['shell'] || "/bin/bash"
     comment u['comment']
+    # TODO: Password support (#9719)
+    #password u['password'] if u['password']
     supports :manage_home => true
     home home_dir
   end
@@ -48,11 +49,11 @@ search(:users, 'groups:sysadmin') do |u|
     owner u['id']
     group u['id']
     mode "0600"
-    variables :ssh_keys => u['ssh_keys']
+    variables :ssh_keys => u['ssh_keys'].join("\n")
   end
 end
 
-group "sysadmin" do
-  gid 2300
+group "admin" do
   members sysadmin_group
+  append true
 end
