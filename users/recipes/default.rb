@@ -30,8 +30,10 @@ search(:users, 'groups:admin') do |u|
 
   user u['id'] do
     uid u['uid']
-    shell u['shell']
+    shell u['shell'] || "/bin/bash"
     comment u['comment']
+    # TODO: Password support (#9719)
+    #password u['password'] if u['password']
     supports :manage_home => true
     home home_dir
   end
