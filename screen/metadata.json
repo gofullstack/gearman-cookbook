@@ -1,24 +1,15 @@
 {
-  "license": "Apache 2.0",
-  "recipes": {
-    "screen": ""
+  "recommendations": {
   },
-  "conflicting": {
-
+  "attributes": {
+  },
+  "suggestions": {
   },
   "dependencies": {
-
   },
-  "providing": {
-    "screen": [
-
-    ]
+  "conflicting": {
   },
   "long_description": "",
-  "description": "Installs screen",
-  "replacing": {
-
-  },
   "platforms": {
     "debian": [
 
@@ -36,17 +27,18 @@
 
     ]
   },
+  "license": "Apache 2.0",
   "version": "0.7.0",
+  "providing": {
+  },
   "maintainer": "Opscode, Inc.",
-  "recommendations": {
-
+  "replacing": {
   },
   "name": "screen",
-  "maintainer_email": "cookbooks@opscode.com",
-  "attributes": {
-
+  "recipes": {
   },
-  "suggestions": {
-
+  "maintainer_email": "cookbooks@opscode.com",
+  "description": "Installs screen",
+  "groupings": {
   }
 }

@@ -1,36 +1,36 @@
 {
-    "suggestions": {
-    },
-    "maintainer_email": "sysadmin@cramerdev.com",
-    "description": "Sets up sources for redhat",
-    "recipes": {
-      "redhat": "Sets up sources for the node's redhat release"
-    },
-    "conflicting": {
-    },
-    "attributes": {
-    },
-    "providing": {
-    },
-    "dependencies": {
-    },
-    "replacing": {
-    },
-    "platforms": {
-      "centos": [
+  "recommendations": {
+  },
+  "attributes": {
+  },
+  "suggestions": {
+  },
+  "dependencies": {
+  },
+  "conflicting": {
+  },
+  "long_description": "",
+  "platforms": {
+    "centos": [
 
-      ],
-      "redhat": [
+    ],
+    "redhat": [
 
-      ]
-    },
-    "version": "0.0.1",
-    "groupings": {
-    },
-    "license": "Apache 2.0",
-    "long_description": "",
-    "name": "redhat",
-    "recommendations": {
-    },
-    "maintainer": "Cramer Development, Inc."
+    ]
+  },
+  "license": "Apache 2.0",
+  "version": "0.0.1",
+  "providing": {
+  },
+  "maintainer": "Cramer Development, Inc.",
+  "replacing": {
+  },
+  "name": "redhat",
+  "recipes": {
+    "redhat": "Sets up sources for the node's redhat release"
+  },
+  "maintainer_email": "sysadmin@cramerdev.com",
+  "description": "Sets up sources for redhat",
+  "groupings": {
   }
+}
