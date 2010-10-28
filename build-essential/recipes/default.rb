@@ -19,21 +19,25 @@
 
 case node[:platform]
 when "ubuntu","debian"
-  %w{build-essential zlib1g-dev libssl-dev libreadline5-dev}.each do |pkg|
+  %w{build-essential binutils-doc}.each do |pkg|
     package pkg do
       action :install
     end
   end
-when "centos","redhat"
-  %w{gcc-c++ make zlib-devel openssl-devel readline-devel}.each do |pkg|
-    package pkg do
-      action :install
-    end
+when "centos"
+  package "gcc" do
+    action :install
   end
 end
 
-%w{patch wget}.each do |pkg|
-  package pkg do
-    action :install
-  end
+package "autoconf" do
+  action :install
+end
+
+package "flex" do
+  action :install
+end
+
+package "bison" do
+  action :install
 end
