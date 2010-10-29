@@ -5,6 +5,7 @@ description       "Installs git"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version           "0.9.0"
 recipe            "git", "Installs git"
+recipe            "git::utils", "Installs git additional utilities"
 
 %w{ ubuntu debian arch redhat centos }.each do |os|
   supports os

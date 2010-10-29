@@ -36,6 +36,7 @@
   },
   "name": "git",
   "recipes": {
+    "git::utils": "Installs git additional utilities",
     "git": "Installs git"
   },
   "maintainer_email": "cookbooks@opscode.com",

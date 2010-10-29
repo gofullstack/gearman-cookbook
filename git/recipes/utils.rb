@@ -1,7 +1,7 @@
+# Cookbook Name:: git
+# Recipe:: utils
 #
-# Cookbook Name:: gitflow
-#
-# Copyright 2010, Cramer Development, Inc.
+# Copyright 2008-2009, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
+
+%w{ git-up grb }.each do |pkg|
+  gem_package pkg do
+    action :install
+  end
+end
 
 remote_file "/usr/src/gitflow-install.sh" do
   source "http://github.com/nvie/gitflow/raw/develop/contrib/gitflow-installer.sh"
@@ -28,4 +33,4 @@ execute "gitflow-install" do
   creates "/usr/local/bin/git-flow"
 end
 
-# TODO: completion (#9163)
+# TODO: git-flow completion (#9163)
