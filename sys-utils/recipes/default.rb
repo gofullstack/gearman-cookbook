@@ -39,10 +39,14 @@ end
   end
 end
 
-
 # Gems
 %w{ json rake }.each do |pkg|
   gem_package pkg do
     action :install
   end
+end
+
+# Chef gem
+gem_package "chef" do
+  version node[:chef][:client_version]
 end
