@@ -1,50 +1,46 @@
 {
-  "name": "subversion",
-  "description": "Installs subversion",
+  "recommendations": {
+  },
+  "attributes": {
+  },
+  "suggestions": {
+  },
+  "dependencies": {
+  },
+  "conflicting": {
+  },
   "long_description": "",
-  "maintainer": "Opscode, Inc.",
-  "maintainer_email": "cookbooks@opscode.com",
-  "license": "Apache 2.0",
   "platforms": {
-    "redhat": [
-
-    ],
-    "centos": [
+    "debian": [
 
     ],
     "fedora": [
 
     ],
+    "centos": [
+
+    ],
     "ubuntu": [
 
     ],
-    "debian": [
+    "redhat": [
 
     ]
   },
-  "dependencies": {
-    "apache2": [
-
-    ]
-  },
-  "recommendations": {
-  },
-  "suggestions": {
-  },
-  "conflicting": {
-  },
+  "license": "Apache 2.0",
+  "version": "0.8.3",
   "providing": {
   },
+  "maintainer": "Opscode, Inc.",
   "replacing": {
   },
-  "attributes": {
-  },
-  "groupings": {
-  },
+  "name": "subversion",
   "recipes": {
-    "subversion": "Includes the client recipe.",
     "subversion::client": "Subversion Client installs subversion and some extra svn libs",
-    "subversion::server": "Subversion Server (Apache2 mod_dav_svn)"
+    "subversion": "Includes the client recipe."
   },
-  "version": "0.8.3"
+  "maintainer_email": "cookbooks@opscode.com",
+  "description": "Installs subversion",
+  "groupings": {
+  }
 }

@@ -17,24 +17,7 @@
 # limitations under the License.
 #
 
-package "subversion" do
-  action :install
-end
-
-extra_packages = case node[:platform]
-  when "ubuntu"
-    if node[:platform_version].to_f < 8.04
-      %w{subversion-tools libsvn-core-perl}
-    else
-      %w{subversion-tools libsvn-perl}
-    end
-  when "centos","redhat","fedora"
-    %w{subversion-devel subversion-perl}
-  else
-    %w{subversion-tools libsvn-perl}
-  end
-
-extra_packages.each do |pkg|
+%w{ subversion git-svn }.each do |pkg|
   package pkg do
     action :install
   end
