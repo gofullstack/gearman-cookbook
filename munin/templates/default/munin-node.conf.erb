@@ -27,9 +27,7 @@ ignore_file \.rpm(save|new)$
 # telnetting to localhost, port 4949
 #
 #host_name localhost.localdomain
-<% if node[:ec2] %>
-host_name <%= node[:hostname] %>.ec2.internal
-<% end %>
+host_name <%= node[:name] %>
 
 # A list of addresses that are allowed to connect.  This must be a
 # regular expression, due to brain damage in Net::Server, which
@@ -40,4 +38,3 @@ host_name <%= node[:hostname] %>.ec2.internal
 allow ^<%= server[:ipaddress].to_s.gsub(/\./, '\.') %>$
 <% end -%>
 allow ^127\.0\.0\.1$
-
