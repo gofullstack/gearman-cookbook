@@ -1,0 +1,59 @@
+{
+  "license": "Apache 2.0",
+  "recipes": {
+    "capistrano": "Installs Capistrano gem",
+    "capistrano": ""
+  },
+  "conflicting": {
+
+  },
+  "dependencies": {
+
+  },
+  "providing": {
+    "capistrano": [
+
+    ]
+  },
+  "long_description": "",
+  "description": "Installs Capistrano gem and provides a define to set up deployment for an application",
+  "replacing": {
+
+  },
+  "platforms": {
+    "openbsd": [
+
+    ],
+    "debian": [
+
+    ],
+    "fedora": [
+
+    ],
+    "centos": [
+
+    ],
+    "freebsd": [
+
+    ],
+    "ubuntu": [
+
+    ],
+    "redhat": [
+
+    ]
+  },
+  "version": "0.7.0",
+  "maintainer": "Opscode, Inc.",
+  "recommendations": {
+
+  },
+  "name": "capistrano",
+  "maintainer_email": "cookbooks@opscode.com",
+  "attributes": {
+
+  },
+  "suggestions": {
+
+  }
+}
