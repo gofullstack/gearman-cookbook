@@ -17,4 +17,6 @@
 # limitations under the License.
 #
 
-gem_package "capistrano"
+%w{ capistrano capistrano-ext }.each do |pkg|
+  gem_package pkg
+end
