@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: users
-# Recipe:: sysadmins
+# Recipe:: default
 #
 # Copyright 2009, Opscode, Inc.
 #
@@ -18,8 +18,8 @@
 #
 sysadmin_group = Array.new
 
-search(:users, 'groups:admin') do |u|
-  sysadmin_group << u['id']
+search(:users) do |u|
+  sysadmin_group << u['id'] if u["groups"].include?("admin")
 
   home_dir = "/home/#{u['id']}"
 
@@ -32,8 +32,6 @@ search(:users, 'groups:admin') do |u|
     uid u['uid']
     shell u['shell'] || "/bin/bash"
     comment u['comment']
-    # TODO: Password support (#9719)
-    #password u['password'] if u['password']
     supports :manage_home => true
     home home_dir
   end
