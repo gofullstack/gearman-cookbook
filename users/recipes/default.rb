@@ -18,15 +18,18 @@
 #
 sysadmin_group = Array.new
 
+# Lock the root user
+user "root" do
+  action :lock
+end
+
 search(:users) do |u|
   sysadmin_group << u['id'] if u["groups"].include?("admin")
 
   home_dir = "/home/#{u['id']}"
 
-  # Lock the root user
-  user "root" do
-    action :lock
-  end
+  # Move on to the next user if this one is not specified for this node
+  next if u[:nodes].is_a?(Array) && !u[:nodes].include?(node[:fqdn])
 
   user u['id'] do
     uid u['uid']
