@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: resolver
+# Cookbook Name:: resolvconf
 # Recipe:: default
 #
 # Copyright 2009, Opscode, Inc.
@@ -15,13 +15,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# = Requires
-# * node[:resolver][:nameservers]
 
-template "/etc/resolv.conf" do
-  source "resolv.conf.erb"
-  owner "root"
-  group "root"
-  mode 0644
+case node[:platform]
+when "debian", "ubuntu"
+  package "resolvconf" do
+    action :install
+  end
+
+  service "resolvconf" do
+    action :restart
+  end
+
+  template "/etc/resolvconf/resolv.conf.d/tail" do
+    source "tail.erb"
+    owner "root"
+    group "root"
+    mode 0644
+  end
 end

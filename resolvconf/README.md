@@ -1,24 +1,23 @@
 DESCRIPTION
 ===========
 
-Configures /etc/resolv.conf.
+Configures resolvconf
 
 USAGE
 =====
 
 Set the resolver attributes in a role, for example from my base.rb:
 
-    "resolver" => {
+    "resolvconf" => {
       "nameservers" => ["10.13.37.120", "10.13.37.40"],
       "search" => "int.example.org"
     }
 
-The resulting /etc/resolv.conf will look like:
+The resulting /etc/resolvconf/resolv.conf.d/tail will look like:
 
-    domain int.example.org
-    search int.example.org
     nameserver 10.13.37.120
     nameserver 10.13.37.40
+    search int.example.org
 
 LICENSE AND AUTHOR
 ==================
