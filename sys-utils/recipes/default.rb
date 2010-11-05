@@ -19,7 +19,7 @@
 
 case node[:platform]
 when "ubuntu","debian"
-  %w{ libxml2-utils resolvconf sysv-rc-conf vim-nox }.each do |pkg|
+  %w{ libxml2-utils sysv-rc-conf vim-nox }.each do |pkg|
     package pkg do
       action :install
     end
