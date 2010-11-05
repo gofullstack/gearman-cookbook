@@ -29,7 +29,9 @@ search(:users) do |u|
   home_dir = "/home/#{u['id']}"
 
   # Move on to the next user if this one is not specified for this node
-  next if u[:nodes].is_a?(Array) && !u[:nodes].include?(node[:fqdn])
+  # TODO: Lock the user if they are not included on this node or specified to
+  # be locked (#9823)
+  next if u[:nodes].is_a?(Array) && !u[:nodes].include?(node.name)
 
   user u['id'] do
     uid u['uid']
