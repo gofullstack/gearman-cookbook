@@ -1,4 +1,0 @@
-<% node[:resolvconf][:nameservers].each do |nameserver| -%>
-nameserver <%= nameserver %>
-<% end -%>
-search <%= node[:resolvconf][:search] %>
