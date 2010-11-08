@@ -33,7 +33,7 @@ when "centos","redhat"
 end
 
 # Common packages
-%w{ pwgen rlwrap }.each do |pkg|
+%w{ pwgen rlwrap unzip zip }.each do |pkg|
   package pkg do
     action :install
   end
