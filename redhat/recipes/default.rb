@@ -20,7 +20,7 @@
 case node[:platform]
 when "centos","redhat"
   execute "add_epel" do
-    command "rpm -Uvh --force http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-3.noarch.rpm"
+    command "rpm -Uvh --force http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-4.noarch.rpm"
     creates "/etc/yum.repos.d/epel.repo"
     action :run
   end
