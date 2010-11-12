@@ -18,11 +18,6 @@
 #
 sysadmin_group = Array.new
 
-# Lock the root user
-user "root" do
-  action :lock
-end
-
 search(:users) do |u|
   sysadmin_group << u['id'] if u["groups"].include?("admin")
 
@@ -60,3 +55,9 @@ group "admin" do
   members sysadmin_group
   append true
 end
+
+# Lock the root user
+user "root" do
+  action :lock
+end
+
