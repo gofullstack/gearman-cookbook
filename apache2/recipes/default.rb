@@ -57,7 +57,7 @@ if platform?("centos", "redhat", "fedora", "suse")
     mode 0755
     action :create
   end
-  
+
   cookbook_file "/usr/local/bin/apache2_module_conf_generate.pl" do
     source "apache2_module_conf_generate.pl"
     mode 0755
@@ -73,25 +73,25 @@ if platform?("centos", "redhat", "fedora", "suse")
       action :create
     end
   end
-    
+
   execute "generate-module-list" do
-    if node[:kernel][:machine] == "x86_64" 
+    if node[:kernel][:machine] == "x86_64"
       libdir = "lib64"
-    else 
+    else
       libdir = "lib"
     end
     command "/usr/local/bin/apache2_module_conf_generate.pl /usr/#{libdir}/httpd/modules /etc/httpd/mods-available"
-    
+
     action :run
   end
-  
+
   %w{a2ensite a2dissite a2enmod a2dismod}.each do |modscript|
     template "/usr/sbin/#{modscript}" do
       source "#{modscript}.erb"
       mode 0755
       owner "root"
       group "root"
-    end  
+    end
   end
 
   # installed by default on centos/rhel, remove in favour of mods-enabled
@@ -103,7 +103,7 @@ if platform?("centos", "redhat", "fedora", "suse")
     action :delete
     backup false
   end
-  
+
   # welcome page moved to the default-site.rb temlate
   file "#{node[:apache][:dir]}/conf.d/welcome.conf" do
     action :delete
@@ -152,6 +152,16 @@ template "charset" do
   notifies :restart, resources(:service => "apache2")
 end
 
+template "server-name" do
+  path "#{node[:apache][:dir]}/conf.d/server-name"
+  source "server-name.erb"
+  owner "root"
+  group "root"
+  mode 0644
+  backup false
+  notifies :restart, resources(:service => "apache2")
+end
+
 template "#{node[:apache][:dir]}/ports.conf" do
   source "ports.conf.erb"
   group "root"
@@ -178,11 +188,16 @@ include_recipe "apache2::mod_authz_groupfile"
 include_recipe "apache2::mod_authz_host"
 include_recipe "apache2::mod_authz_user"
 include_recipe "apache2::mod_autoindex"
+include_recipe "apache2::mod_deflate"
 include_recipe "apache2::mod_dir"
 include_recipe "apache2::mod_env"
+include_recipe "apache2::mod_expires"
+include_recipe "apache2::mod_headers"
 include_recipe "apache2::mod_mime"
 include_recipe "apache2::mod_negotiation"
+include_recipe "apache2::mod_rewrite"
 include_recipe "apache2::mod_setenvif"
+include_recipe "apache2::mod_ssl"
 include_recipe "apache2::mod_log_config" if platform?("centos", "redhat", "suse")
 
 # uncomment to get working example site on centos/redhat/fedora
