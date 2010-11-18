@@ -88,18 +88,13 @@ grants_path = value_for_platform(
   "default" => "/etc/mysql/grants.sql"
 )
 
-begin
-  t = resources(:template => "/etc/mysql/grants.sql")
-rescue
-  Chef::Log.warn("Could not find previously defined grants.sql resource")
-  t = template "/etc/mysql/grants.sql" do
-    path grants_path
-    source "grants.sql.erb"
-    owner "root"
-    group "root"
-    mode "0600"
-    action :create
-  end
+template "/etc/mysql/grants.sql" do
+  path grants_path
+  source "grants.sql.erb"
+  owner "root"
+  group "root"
+  mode "0600"
+  action :create_if_missing
 end
 
 execute "mysql-install-privileges" do

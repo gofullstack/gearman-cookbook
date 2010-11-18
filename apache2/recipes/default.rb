@@ -81,8 +81,8 @@ if platform?("centos", "redhat", "fedora", "suse")
       libdir = "lib"
     end
     command "/usr/local/bin/apache2_module_conf_generate.pl /usr/#{libdir}/httpd/modules /etc/httpd/mods-available"
-
-    action :run
+    action :nothing
+    subscribes :run, resources(:cookbook_file => "/usr/local/bin/apache2_module_conf_generate.pl"), :immediately
   end
 
   %w{a2ensite a2dissite a2enmod a2dismod}.each do |modscript|
