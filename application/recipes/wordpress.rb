@@ -20,6 +20,13 @@ app = node.run_state[:current_app]
 
 include_recipe "apache2"
 
+directory app[:deploy_to] do
+  owner app[:owner]
+  group app[:group]
+  mode "0755"
+  action :create
+end
+
 web_app app[:id] do
   docroot "#{app[:deploy_to]}/current"
   template "web_app.conf.erb"
