@@ -10,7 +10,8 @@ recipe           "application::passenger_apache2", "Sets up a deployed Rails app
 recipe           "application::rails", "Deploys a Rails application specified in a data bag with the deploy_revision resource"
 recipe           "application::rails_nginx_ree_passenger", "Deprecated recipe that deployed a rails application under Ruby Enterprise Edition, Passenger and Nginx"
 recipe           "application::unicorn", "Sets up the deployed Rails application with Unicorn as the web server"
+recipe           "application::wordpress", "Sets up a deployed WordPress application with Apache2 as the web server"
 
-%w{ ruby_enterprise passenger_enterprise runit unicorn apache2 passenger_apache2}.each do |cb|
-  depends cb
-end
+#%w{ ruby_enterprise passenger_enterprise runit unicorn apache2 passenger_apache2}.each do |cb|
+  #depends cb
+#end
