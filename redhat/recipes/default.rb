@@ -24,4 +24,8 @@ when "centos","redhat"
     creates "/etc/yum.repos.d/epel.repo"
     action :run
   end
+
+  service "iptables" do
+    action :disable
+  end
 end
