@@ -32,3 +32,7 @@ default[:wordpress][:keys][:auth] = secure_password
 default[:wordpress][:keys][:secure_auth] = secure_password
 default[:wordpress][:keys][:logged_in] = secure_password
 default[:wordpress][:keys][:nonce] = secure_password
+default[:wordpress][:keys][:auth_salt] = secure_password
+default[:wordpress][:keys][:secure_auth_salt] = secure_password
+default[:wordpress][:keys][:logged_in_salt] = secure_password
+default[:wordpress][:keys][:nonce_salt] = secure_password

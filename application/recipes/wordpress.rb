@@ -19,12 +19,24 @@
 app = node.run_state[:current_app]
 
 include_recipe "apache2"
+include_recipe "wordpress"
 
 directory app[:deploy_to] do
   owner app[:owner]
   group app[:group]
   mode "0755"
   action :create
+end
+
+template "wp-config.php" do
+  path "#{app[:deploy_to]}/shared/config"
+  variables(
+    :db => node[:databases][node[:app_environment]].merge(:host => "localhost"),
+    :keys => node[:wordpress][:keys]
+  )
+  owner app[:owner]
+  group app[:group]
+  mode "0644"
 end
 
 web_app app[:id] do
