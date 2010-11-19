@@ -19,7 +19,6 @@
 app = node.run_state[:current_app]
 
 include_recipe "apache2"
-include_recipe "wordpress"
 
 directory app[:deploy_to] do
   owner app[:owner]
@@ -29,10 +28,10 @@ directory app[:deploy_to] do
 end
 
 template "wp-config.php" do
-  path "#{app[:deploy_to]}/shared/config"
+  path "#{app[:deploy_to]}/shared/config/wp-config.php"
   variables(
-    :db => node[:databases][node[:app_environment]].merge(:host => "localhost"),
-    :keys => node[:wordpress][:keys]
+    :db => app[:databases][node[:app_environment]].merge(:host => "localhost"),
+    :keys => app[:wordpress][:keys]
   )
   owner app[:owner]
   group app[:group]
