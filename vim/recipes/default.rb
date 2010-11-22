@@ -19,6 +19,17 @@
 
 package "vim"
 
+case node[:platform]
+when "ubuntu","debian"
+  package "vim-nox" do
+    action :install
+  end
+when "centos","redhat"
+  package "vim-enhanced" do
+    action :install
+  end
+end
+
 node[:vim][:extra_packages].each do |vimpkg|
   package vimpkg
 end
