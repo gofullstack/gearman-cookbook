@@ -19,17 +19,17 @@
 
 case node[:platform]
 when "ubuntu","debian"
-  %w{ libxml2-utils sysv-rc-conf }.each do |pkg|
+  %w{ sysv-rc-conf }.each do |pkg|
     package pkg do
       action :install
     end
   end
-when "centos","redhat"
-  %w{ libxml2 }.each do |pkg|
-    package pkg do
-      action :install
-    end
-  end
+#when "centos","redhat"
+  #%w{  }.each do |pkg|
+    #package pkg do
+      #action :install
+    #end
+  #end
 end
 
 # Common packages

@@ -17,6 +17,17 @@
 # limitations under the License.
 #
 
+case node[:platform]
+when "ubuntu","debian"
+  package "libxml2-utils" do
+    action :install
+  end
+when "centos","redhat"
+  package "libxml2" do
+    action :install
+  end
+end
+
 package "libxml-devel" do
   package_name value_for_platform(
     [ "centos", "redhat", "suse", "fedora" ] => { "default" => "libxml2-devel" },

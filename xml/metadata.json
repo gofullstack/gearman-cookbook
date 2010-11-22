@@ -1,47 +1,47 @@
 {
-    "recommendations": {
-    },
-    "attributes": {
-    },
-    "platforms": {
-      "ubuntu": [
+  "recommendations": {
+  },
+  "attributes": {
+  },
+  "suggestions": {
+  },
+  "dependencies": {
+  },
+  "conflicting": {
+  },
+  "long_description": "",
+  "platforms": {
+    "debian": [
 
-      ],
-      "fedora": [
+    ],
+    "fedora": [
 
-      ],
-      "centos": [
+    ],
+    "centos": [
 
-      ],
-      "suse": [
+    ],
+    "ubuntu": [
 
-      ],
-      "debian": [
+    ],
+    "suse": [
 
-      ],
-      "redhat": [
+    ],
+    "redhat": [
 
-      ]
-    },
-    "maintainer": "Opscode, Inc.",
-    "long_description": "",
-    "suggestions": {
-    },
-    "dependencies": {
-    },
-    "recipes": {
-    },
-    "maintainer_email": "cookbooks@opscode.com",
-    "version": "0.1.0",
-    "conflicting": {
-    },
-    "name": "xml",
-    "providing": {
-    },
-    "license": "Apache 2.0",
-    "replacing": {
-    },
-    "groupings": {
-    },
-    "description": "Installs xml"
+    ]
+  },
+  "license": "Apache 2.0",
+  "version": "0.1.0",
+  "providing": {
+  },
+  "maintainer": "Opscode, Inc.",
+  "replacing": {
+  },
+  "name": "xml",
+  "recipes": {
+  },
+  "maintainer_email": "cookbooks@opscode.com",
+  "description": "Installs xml",
+  "groupings": {
   }
+}
