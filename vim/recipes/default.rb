@@ -17,8 +17,6 @@
 # limitations under the License.
 #
 
-package "vim"
-
 case node[:platform]
 when "ubuntu","debian"
   package "vim-nox" do
