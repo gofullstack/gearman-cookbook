@@ -1,8 +1,5 @@
 {
   "dependencies": {
-    "rubygems": [
-
-    ]
   },
   "maintainer_email": "cookbooks@jackhq.com",
   "conflicting": {
