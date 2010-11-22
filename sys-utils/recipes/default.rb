@@ -40,7 +40,7 @@ end
 end
 
 # Gems
-%w{ json rake }.each do |pkg|
+%w{ json rake bundler }.each do |pkg|
   gem_package pkg do
     action :install
   end
