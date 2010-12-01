@@ -1,0 +1,17 @@
+development: &dev
+  adapter: postgresql
+  host: /var/run/postgresql
+  database: gearman_development
+  reconnect: true
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *dev
+  database: gearman_test
+
+production:
+  <<: *dev
+#  host: 172.16.101.82
+  #database: gearman_production
