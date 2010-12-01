@@ -53,6 +53,7 @@ end
 # Database config
 # TODO: Configure database with attributes
 template node[:gearman][:server][:path] + "/config/database.yml" do
+  backup false
   source "database.yml.erb"
   owner "gearman"
   group "gearman"
@@ -66,4 +67,22 @@ bash "bundle install" do
   creates node[:gearman][:server][:path] + "/vendor/bundle"
   user "gearman"
   group "gearman"
+end
+
+# Service
+# TODO: Make a better initscript
+if node[:platform] == "debian" || node[:platform] == "ubuntu"
+  cookbook_file "/etc/init.d/rgearmand" do
+    backup false
+    owner "root"
+    group "root"
+    source "rgearmand-debian-initscript"
+    mode "0755"
+  end
+
+  service "rgearmand" do
+    enabled true
+    running true
+    action :enable
+  end
 end

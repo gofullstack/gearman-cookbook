@@ -1,0 +1,32 @@
+#! /bin/sh
+# /etc/init.d/gearmand
+#
+
+GEARMAN_PATH=/opt/rgearmand
+GEARMAN_USER=gearman
+PIDFILE=/var/run/rgearmand.pid
+LOGFILE=$GEARMAN_PATH/rgearmand.log
+
+. /lib/lsb/init-functions
+
+cd $GEARMAN_PATH
+
+case "$1" in
+  start)
+    log_action_begin_msg "Starting Gearman server"
+    sudo -u $GEARMAN_USER nohup ./bin/rgearmand >> $LOGFILE 2>&1 &
+    echo $! > $PIDFILE
+    log_action_end_msg $?
+    ;;
+  stop)
+    log_action_begin_msg "Stopping Gearman server"
+    kill `cat $PIDFILE` && rm $PIDFILE
+    log_action_end_msg $?
+    ;;
+  *)
+    echo "Usage: /etc/init.d/rgearmand {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
