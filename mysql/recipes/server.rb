@@ -61,7 +61,8 @@ service "mysql" do
     start_command "start mysql"
   end
   supports :status => true, :restart => true, :reload => true
-  action :nothing
+  enabled true
+  action :start
 end
 
 template value_for_platform([ "centos", "redhat", "suse" , "fedora" ] => {"default" => "/etc/my.cnf"}, "default" => "/etc/mysql/my.cnf") do
