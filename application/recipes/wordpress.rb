@@ -31,7 +31,8 @@ template "wp-config.php" do
   path "#{app[:deploy_to]}/shared/config/wp-config.php"
   variables(
     :db => app[:databases][node[:app_environment]].merge(:host => "localhost"),
-    :keys => app[:wordpress][:keys]
+    :keys => app[:wordpress][:keys],
+    :url => "http://" + app[:domain_name][node[:app_environment]]
   )
   owner app[:owner]
   group app[:group]
