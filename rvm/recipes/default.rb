@@ -2,9 +2,6 @@
 # Cookbook Name:: rvm
 # Recipe:: default
 
-# Make sure that the package list is up to date on Ubuntu/Debian.
-include_recipe "apt" if [ 'debian', 'ubuntu' ].member? node[:platform]
-
 # Make sure we have all we need to compile ruby implementations:
 package "curl"
 package "git-core"
