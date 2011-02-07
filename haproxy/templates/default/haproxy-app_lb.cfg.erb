@@ -1,34 +1,39 @@
 global
-        log 127.0.0.1   local0
-        log 127.0.0.1   local1 notice
-        #log loghost    local0 info
-        maxconn 4096
-        #debug
-        #quiet
-        user haproxy
-        group haproxy
+  daemon
+  maxconn 10000
+  nbproc 2
+  log 127.0.0.1 syslog
 
 defaults
-        log     global
-        mode    http
-        option  httplog
-        option  dontlognull
-        retries 3
-        redispatch
-        maxconn 2000
-        contimeout      5000
-        clitimeout      50000
-        srvtimeout      50000
-        
-# Set up application listeners here.
-listen application 0.0.0.0:80
-  balance roundrobin
-  <% @pool_members.each do |member| -%>
-  <% server_ip = member.has_key?("ec2") ? member["ec2"]["public_ipv4"] : member["ipaddress"] -%>
-  server <%= member["hostname"] %> <%= server_ip %>:<%= node["haproxy"]["member_port"] %> weight 1 maxconn 1 check 
-  <% end -%>
-<% if node["haproxy"]["enable_admin"] -%>
-listen admin 0.0.0.0:22002
+  log global
+  clitimeout 60000
+  srvtimeout 30000
+  contimeout 4000
+  retries 3
+  option redispatch
+  option abortonclose
+
+listen  lb1_stats 127.0.0.1:8080
   mode http
   stats uri /
-<% end -%>
+  stats auth username:password
+  stats refresh 5s
+
+## FRONTEND ##
+
+# Load-balanced IPs
+frontend <%= node[:haproxy][:frontend_name] %>
+  bind 0.0.0.0:<%= node[:haproxy][:member_port] %>
+  default_backend <%= node[:haproxy][:cluster_name] %>
+
+## BACKEND ##
+
+# Cluster of servers
+backend <%= node[:haproxy][:cluster_name] %>
+  mode    tcp
+  option  tcpka
+  balance roundrobin
+  <% @pool_members.each do |member| %>
+    <% server_ip = member.has_key?(:rackspace) ? member[:rackspace][:private_ip] : member[:ipaddress] -%>
+    server <%= member[:hostname] %> <%= server_ip %>:<%= node[:haproxy][:member_port] %> weight 1 check port <%= node[:haproxy][:member_port] %> inter 1s rise 2 fall 1
+  <% end %>
