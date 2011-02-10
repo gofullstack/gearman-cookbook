@@ -1,15 +1,6 @@
 {
-  "recommendations": {
-  },
-  "attributes": {
-  },
   "suggestions": {
   },
-  "dependencies": {
-  },
-  "conflicting": {
-  },
-  "long_description": "",
   "platforms": {
     "debian": [
 
@@ -30,18 +21,27 @@
 
     ]
   },
-  "license": "Apache 2.0",
-  "version": "0.1.0",
-  "providing": {
+  "long_description": "",
+  "conflicting": {
   },
-  "maintainer": "Opscode, Inc.",
-  "replacing": {
-  },
-  "name": "xml",
+  "description": "Installs xml",
   "recipes": {
   },
+  "providing": {
+  },
+  "dependencies": {
+  },
+  "maintainer": "Opscode, Inc.",
+  "version": "0.1.0",
+  "attributes": {
+  },
+  "replacing": {
+  },
   "maintainer_email": "cookbooks@opscode.com",
-  "description": "Installs xml",
   "groupings": {
-  }
+  },
+  "name": "xml",
+  "recommendations": {
+  },
+  "license": "Apache 2.0"
 }

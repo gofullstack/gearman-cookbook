@@ -34,3 +34,10 @@ package "libxml-devel" do
     "default" => 'libxml2-dev'
   )
 end
+
+package "libxslt1-dev" do
+  package_name value_for_platform(
+    [ "centos", "redhat", "suse", "fedora" ] => { "default" => "libxslt-devel" },
+    "default" => 'libxslt1-dev'
+  )
+end
