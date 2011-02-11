@@ -35,7 +35,7 @@ cookbook_file value_for_platform([ "centos", "redhat", "fedora", "suse" ] => {"d
   notifies :restart, resources("service[apache2]"), :delayed
 end
 
-packages = value_for_platform([ "centos", "redhat", "fedora", "suse" ] => {"default" => %w(php php-cli php-Smarty)}, "default" => %w{php5 php5-cli smarty})
+packages = value_for_platform([ "centos", "redhat", "fedora", "suse" ] => {"default" => %w(php php-cli php-Smarty php-soap)}, "default" => %w{php5 php5-cli smarty php-soap})
 
 packages.each do |pkg|
   package pkg do
