@@ -1,0 +1,38 @@
+{
+  "license": "Apache 2.0",
+  "long_description": "= DESCRIPTION:\n\nRecipes for Gearman clients libraries and server\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\nThe gearman::server recipe installs the gearmand job server. The gearman::ruby_lib installs the libriaries and gems needed to run Ruby clients and workers.\n",
+  "recipes": {
+    "gearman::ruby_lib": "Install the Gearman Ruby client and worker libraries",
+    "gearman": "Install development libraries",
+    "gearman::server": "Install the Gearman job server"
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "maintainer": "Cramer Development",
+  "description": "Installs/Configures gearman libraries and server",
+  "replacing": {
+  },
+  "platforms": {
+    "debian": [
+
+    ],
+    "ubuntu": [
+
+    ]
+  },
+  "version": "0.0.1",
+  "maintainer_email": "sysadmin@cramerdev.com",
+  "groupings": {
+  },
+  "attributes": {
+  },
+  "recommendations": {
+  },
+  "dependencies": {
+  },
+  "name": "gearman",
+  "suggestions": {
+  }
+}

@@ -1,0 +1,11 @@
+= DESCRIPTION:
+
+Recipes for Gearman clients libraries and server
+
+= REQUIREMENTS:
+
+= ATTRIBUTES:
+
+= USAGE:
+
+The gearman::server recipe installs the gearmand job server. The gearman::ruby_lib installs the libriaries and gems needed to run Ruby clients and workers.
