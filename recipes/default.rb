@@ -2,7 +2,7 @@
 # Cookbook Name:: gearman
 # Recipe:: default
 #
-# Copyright 2011, Cramer Development
+# Copyright 2011-2012, Cramer Development
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,8 +17,5 @@
 # limitations under the License.
 #
 
-
-# All rights reserved - Do Not Redistribute
-#
-
-package "libgearman-dev"
+package 'libgearman-dev'
+gem_package 'gearman-ruby'
