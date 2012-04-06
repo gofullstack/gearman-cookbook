@@ -17,12 +17,27 @@
 # limitations under the License.
 #
 
-%w{ libboost-program-options1.40.0 libevent-1.4-2 libtokyocabinet8 }.each do |pkg|
-  package pkg
-end
+packages = value_for_platform(
+  %w{ debian ubuntu } => {
+    :default => %w{ libboost-program-options1.40.0 libevent-1.4-2 libtokyocabinet8 }
+  },
+  %w{ centos redhat } => {
+    :default => []
+  }
+)
 
-remote_file "#{Chef::Config[:file_cache_path]}/gearmand-0.29_x86_64.deb" do
-  source 'https://github.com/cramerdev/packages/raw/master/gearmand-0.29_x86_64.deb'
+file_to_install = value_for_platform(
+  %w{ debian ubuntu } => { :default => 'gearmand-0.29_x86_64.deb' },
+  %w{ centos redhat } => { :default => 'gearmand-0.24_x86_64.rpm' }
+)
+
+install_command = value_for_platform(
+  %w{ debian ubuntu } => { :default => 'dpkg -i' },
+  %w{ centos redhat } => { :default => 'rpm -Uvh' }
+)
+
+remote_file "#{Chef::Config[:file_cache_path]}/#{file_to_install}" do
+  source "https://github.com/cramerdev/packages/raw/master/#{file_to_install}"
   action :create_if_missing
 end
 
@@ -30,7 +45,7 @@ package 'libgearman-dev gearman-job-server' do
   action :remove
 end
 
-execute "dpkg -i #{Chef::Config[:file_cache_path]}/gearmand-0.29_x86_64.deb" do
+execute "#{install_command} #{Chef::Config[:file_cache_path]}/#{file_to_install}" do
   creates '/usr/sbin/gearmand'
 end
 
@@ -58,16 +73,29 @@ logrotate_app 'gearmand' do
   create "600 #{node['gearman']['server']['user']} #{node['gearman']['server']['group']}"
 end
 
-template '/etc/init/gearmand.conf' do
-  source 'gearmand.upstart.erb'
-  owner 'root'
-  group 'root'
-  mode '0644'
-  notifies :restart, 'service[gearmand]'
-end
+args = "--port=#{node['gearman']['server']['port']} --log-file #{node['gearman']['server']['log_dir']}/gearmand.log --verbose=#{node['gearman']['server']['log_level']}"
 
-service 'gearmand' do
-  provider Chef::Provider::Service::Upstart
-  supports :restart => true, :status => true
-  action [:enable, :start]
+case node['platform']
+when 'debian', 'ubuntu'
+  template '/etc/init/gearmand.conf' do source 'gearmand.upstart.erb'
+    owner 'root'
+    group 'root'
+    mode '0644'
+    variables :args => args
+    notifies :restart, 'service[gearmand]'
+  end
+
+  service 'gearmand' do
+    provider Chef::Provider::Service::Upstart
+    supports :restart => true, :status => true
+    action [:enable, :start]
+  end
+when 'centos', 'redhat'
+  include_recipe 'supervisor'
+  supervisor_service 'gearmand' do
+    start_command "/usr/sbin/gearmand #{args}"
+    variables :user => node['gearman']['server']['user']
+    supports :restart => true
+    action [:enable, :start]
+  end
 end

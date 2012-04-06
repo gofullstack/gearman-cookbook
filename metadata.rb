@@ -7,7 +7,8 @@ version          "0.0.1"
 recipe           "gearman", "Install development libraries"
 recipe           "gearman::server", "Install the Gearman job server"
 depends          "logrotate"
+depends          "supervisor"
 
-%w{ubuntu debian}.each do |os|
+%w{ ubuntu redhat }.each do |os|
   supports os
 end
