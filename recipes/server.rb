@@ -26,7 +26,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/gearmand-0.29_x86_64.deb" do
   action :create_if_missing
 end
 
-package 'libgearman-dev' do
+package 'libgearman-dev gearman-job-server' do
   action :remove
 end
 
@@ -45,10 +45,17 @@ group node['gearman']['server']['group'] do
   members [node['gearman']['server']['user']]
 end
 
-file node['gearman']['server']['log_file'] do
+directory node['gearman']['server']['log_dir'] do
   owner node['gearman']['server']['user']
   group node['gearman']['server']['group']
-  mode '0600'
+  mode '0770'
+end
+
+logrotate_app 'gearmand' do
+  path "#{node['gearman']['server']['log_dir']}/*.log"
+  frequency 'daily'
+  rotate 4
+  create "600 #{node['gearman']['server']['user']} #{node['gearman']['server']['group']}"
 end
 
 template '/etc/init/gearmand.conf' do
@@ -56,6 +63,7 @@ template '/etc/init/gearmand.conf' do
   owner 'root'
   group 'root'
   mode '0644'
+  notifies :restart, 'service[gearmand]'
 end
 
 service 'gearmand' do

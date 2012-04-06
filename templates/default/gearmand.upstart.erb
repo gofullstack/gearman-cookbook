@@ -2,11 +2,10 @@
 
 description "Gearman job server"
 
-start on runlevel [2345]
-stop on runlevel [06]
+start on (net-device-up and local-filesystems and runlevel [2345])
+stop on runlevel [016]
 
-expect fork
+exec start-stop-daemon --pidfile /var/run/gearmand.pid --start -c <%= node['gearman']['server']['user'] %> --exec /usr/sbin/gearmand -- --log-file <%= node['gearman']['server']['log_dir'] %>/gearmand.log --verbose=<%= node['gearman']['server']['log_level'] %>
 
-script
-  exec su -s /bin/sh -c 'exec "$0" "$@"' <%= node['gearman']['server']['user'] %> -- gearmand --log-file <%= node['gearman']['server']['log_file'] %>
-end script
+respawn
+respawn limit 10 5
