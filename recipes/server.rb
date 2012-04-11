@@ -45,6 +45,10 @@ package 'libgearman-dev gearman-job-server' do
   action :remove
 end
 
+packages.each do |pkg|
+  package pkg
+end
+
 execute "#{install_command} #{Chef::Config[:file_cache_path]}/#{file_to_install}" do
   creates '/usr/sbin/gearmand'
 end
