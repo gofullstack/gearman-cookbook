@@ -67,7 +67,7 @@ end
 directory node['gearman']['server']['log_dir'] do
   owner node['gearman']['server']['user']
   group node['gearman']['server']['group']
-  mode '0770'
+  mode '0775'
 end
 
 logrotate_app 'gearmand' do
