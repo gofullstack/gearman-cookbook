@@ -1,3 +1,4 @@
+name             "gearman"
 maintainer       "Cramer Development"
 maintainer_email "sysadmin@cramerdev.com"
 license          "Apache 2.0"
